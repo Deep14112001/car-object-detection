@@ -15,10 +15,10 @@ def plot_image_with_bbox(image_dir, image_name, bbox):
     
     x_min, y_min, x_max, y_max = bbox
     
-    # Draw the bounding box on the image
+    # Drawing the bounding box on the image
     cv2.rectangle(image, (int(x_min), int(y_min)), (int(x_max), int(y_max)), (0, 255, 0), 2)
     
-    # Convert BGR to RGB for displaying with matplotlib
+    # Converting BGR to RGB for displaying with matplotlib
     plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
     plt.title(f"Image: {image_name}")
     plt.axis('off')
@@ -53,8 +53,8 @@ def convert_to_yolo_format(csv_file, output_dir, image_dir):
         width = (x_max - x_min) / w
         height = (y_max - y_min) / h
         
-        # Create a text file for each image with YOLO formatted bounding boxes
+        # Creating a text file for each image with YOLO formatted bounding boxes
         label_file = os.path.join(output_dir, Path(image_file).stem + ".txt")
         with open(label_file, 'w') as f:
-            # Class '0' for cars (you can change this if there are multiple classes)
+            # Class '0' for cars 
             f.write(f"0 {x_center} {y_center} {width} {height}\n")
